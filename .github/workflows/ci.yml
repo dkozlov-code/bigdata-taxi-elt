@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.3
       - run: uv sync --locked
       - run: uv run ruff check .
       # pytest выполняет реальные GX checkpoints и dbt build (включая dbt test).
@@ -30,7 +30,7 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.3
       - run: uv sync --locked
       - run: uv run python -m pipeline.release stage
       - uses: actions/upload-artifact@v7
@@ -45,7 +45,7 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.3
       - run: uv sync --locked
       - uses: actions/download-artifact@v8
         with:
