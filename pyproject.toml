@@ -1,0 +1,21 @@
+[project]
+name = "bigdata-taxi-elt"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "prefect==3.9.2", "duckdb==2.0.0", "dbt-duckdb==1.11.1",
+  "great-expectations==1.24.1", "pandas==3.1.1", "pyarrow==26.0.1",
+]
+
+[dependency-groups]
+dev = ["pytest==9.2.0", "ruff==0.17.4"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint.isort]
+known-third-party = ["great_expectations", "prefect"]

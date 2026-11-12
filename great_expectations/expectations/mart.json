@@ -1,0 +1,7 @@
+[
+  {"type": "ExpectColumnValuesToNotBeNull", "kwargs": {"column": "service_date"}},
+  {"type": "ExpectColumnValuesToBeBetween", "kwargs": {"column": "revenue_usd", "min_value": 0}},
+  {"type": "ExpectColumnValuesToBeBetween", "kwargs": {"column": "trips", "min_value": 1}},
+  {"type": "ExpectCompoundColumnsToBeUnique", "kwargs": {"column_list": ["service_date", "region", "vendor_id"]}},
+  {"type": "ExpectColumnValuesToBeBetween", "kwargs": {"column": "orphan_count", "min_value": 0, "max_value": 0}}
+]

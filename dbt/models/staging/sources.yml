@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: trips
+        columns:
+          - name: idempotency_key
+            data_tests: [unique, not_null]

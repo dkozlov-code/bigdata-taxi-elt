@@ -1,0 +1,31 @@
+version: 2
+seeds:
+  - name: dim_vendors
+    columns:
+      - name: vendor_id
+        data_tests: [unique, not_null]
+models:
+  - name: stg_trips
+    description: Поездки с ключом, датой и пространственной ячейкой около 1 км.
+    columns:
+      - name: idempotency_key
+        data_tests: [unique, not_null]
+      - name: vendor_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_vendors')
+                field: vendor_id
+  - name: daily_revenue
+    description: Дневная выручка по геоячейке и категории поставщика.
+    columns:
+      - name: service_date
+        data_tests: [not_null]
+      - name: region
+        data_tests: [not_null]
+      - name: vendor_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_vendors')
+                field: vendor_id

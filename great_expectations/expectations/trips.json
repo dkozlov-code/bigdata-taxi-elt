@@ -1,0 +1,8 @@
+[
+  {"type": "ExpectColumnValuesToNotBeNull", "kwargs": {"column": "idempotency_key"}},
+  {"type": "ExpectColumnValuesToBeUnique", "kwargs": {"column": "idempotency_key"}},
+  {"type": "ExpectColumnValuesToNotBeNull", "kwargs": {"column": "pickup_datetime"}},
+  {"type": "ExpectColumnValuesToBeBetween", "kwargs": {"column": "fare_amount", "min_value": 0, "max_value": 10000}},
+  {"type": "ExpectColumnValuesToBeBetween", "kwargs": {"column": "trip_distance", "min_value": 0.001, "max_value": 1000}},
+  {"type": "ExpectColumnValuesToBeInSet", "kwargs": {"column": "vendor_id", "value_set": [1, 2]}}
+]

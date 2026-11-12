@@ -1,0 +1,31 @@
+name: taxi-elt
+services:
+  prefect:
+    build: .
+    command: prefect server start --host 0.0.0.0
+    environment:
+      PREFECT_SERVER_API_HOST: 0.0.0.0
+      PREFECT_UI_API_URL: http://localhost:4200/api
+    ports: ["127.0.0.1:4200:4200"]
+    volumes: ["prefect-state:/root/.prefect"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4200/api/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  pipeline:
+    build: .
+    environment:
+      PREFECT_API_URL: http://prefect:4200/api
+      TAXI_WORK: /app/runtime
+    depends_on:
+      prefect:
+        condition: service_healthy
+    volumes: ["./runtime:/app/runtime"]
+  reports:
+    build: .
+    command: python -m http.server 8080 --directory /app/runtime
+    ports: ["127.0.0.1:8081:8080"]
+    volumes: ["./runtime:/app/runtime:ro"]
+volumes:
+  prefect-state:

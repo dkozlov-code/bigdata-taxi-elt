@@ -1,0 +1,16 @@
+name: taxi
+version: '1.0.0'
+config-version: 2
+profile: taxi
+model-paths: [models]
+test-paths: [tests]
+seed-paths: [seeds]
+macro-paths: [macros]
+models:
+  taxi:
+    staging:
+      +materialized: incremental
+      +incremental_strategy: merge
+      +unique_key: idempotency_key
+    marts:
+      +materialized: table

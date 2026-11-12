@@ -1,0 +1,8 @@
+taxi:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('TAXI_DB_PATH') }}"
+      schema: analytics
+      threads: 2

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.idea/
+.DS_Store
+runtime/
+data/raw/
+dbt/target/
+dbt/logs/
+*.log
+/CI.md
